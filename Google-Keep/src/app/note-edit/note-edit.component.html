@@ -1,0 +1,14 @@
+<label>Title</label>
+<input [(ngModel)]="note.Title"  placeholder="Title"/>
+<label>Message</label>
+<input [(ngModel)]="note.Message" placeholder="Message" />
+<label *ngFor="let Label of note.Label">
+  Label
+  <input [(ngModel)]="Label.Label" placeholder="label" />
+</label>
+<label *ngFor="let checklist of note.CheckList">
+  CheckList
+  <input [(ngModel)]="checklist.CheckList" placeholder="checklist" />
+</label>
+<button type="save" (click)="saveDetails()">Save</button>
+<button type="button" (click)="goBack()">Back</button>
