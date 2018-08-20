@@ -3,6 +3,7 @@ import {NotesService} from '../notes.service';
 import {FormGroup, FormControl, FormBuilder, FormArray} from '@angular/forms';
 import {Note} from '../Note';
 import { Label } from '../Label';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-note-create',
@@ -10,7 +11,11 @@ import { Label } from '../Label';
   styleUrls: ['./note-create.component.css']
 })
 export class NoteCreateComponent implements OnInit {
-  constructor(private noteservice : NotesService, private fb : FormBuilder) { };
+  constructor(
+    private noteservice : NotesService,
+     private fb : FormBuilder,
+    private router : Router
+    ) { };
 
   // CreateNote = new FormGroup({
   //   Title : new FormControl(),
@@ -53,6 +58,7 @@ export class NoteCreateComponent implements OnInit {
   }
   onSubmit():void{
     this.GenerateNote();
+    this.router.navigate(['']);
   }
   GenerateNote():void{
     console.log(this.CreateNoteDF.value);

@@ -28,6 +28,10 @@ export class NotesService {
   post(note:Note){
     return this.http.post("https://localhost:5001/api/Notes", note);
   }
+  delete(Id:number)
+  {
+    return this.http.delete("https://localhost:5001/api/Notes?Id="+Id);
+  }
   constructor(private http : Http) {
 
   }

@@ -19,8 +19,13 @@ export class NotesDashboardComponent implements OnInit {
     //this.route.redirectTo = "Dashboard";
     console.log("Dashboard");
   }
-   getNotes(){
+  getNotes(){
     this.notes.getNotes().subscribe(result => this.Notes = result.json());
+  }
+  delete(Id:number){
+    this.notes.delete(Id).subscribe(result=> console.log(result.statusText));
+    console.log("executed delete function");
+    alert("Delete Successful");
   }
   EditNote(note : Note) : void{
     this.SelectedNote = note;

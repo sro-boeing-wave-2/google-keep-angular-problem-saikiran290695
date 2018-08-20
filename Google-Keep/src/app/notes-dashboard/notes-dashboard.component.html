@@ -16,6 +16,7 @@
       </li>
     </ul>
     <a type="button" routerLink="/Edit/{{note.id}}">Edit</a>
+    <button type="button" (click)="delete(note.id)">Delete</button>
   </div>
 </div>
 <!-- <app-note-edit [note] = "SelectedNote"></app-note-edit> -->
