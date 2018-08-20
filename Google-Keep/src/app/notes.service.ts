@@ -21,9 +21,12 @@ export class NotesService {
   getNoteById(Id){
      return this.http.get("https://localhost:5001/api/Notes?Id="+Id);
   }
-  post(note:Note, Id : number){
+  put(note:Note, Id : number){
     return this.http.put("https://localhost:5001/api/Notes/"+Id, note);
     //console.log("updated")
+  }
+  post(note:Note){
+    return this.http.post("https://localhost:5001/api/Notes", note);
   }
   constructor(private http : Http) {
 

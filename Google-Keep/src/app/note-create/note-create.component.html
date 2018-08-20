@@ -1,4 +1,4 @@
-<form novalidate [formGroup]="CreateNote" (ngSubmit)="onSubmit()">
+<!-- <form novalidate [formGroup]="CreateNote" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label>Title</label>
     <input type="text" class="form-control" formControlName="Title" required>
@@ -13,7 +13,6 @@
 
 
     <button type="button" (click) ="addmore()">Addmore</button>
-
     <div class="Note_CheckList">
     <label>CheckList</label>
     <input type="text" class="form-control" formControlName="CheckList">
@@ -25,4 +24,42 @@
     <input type="radio" class="form-control" value="false" formControlName="IsPinned" />No
     <button type="submit" class="btn btn-primary">submit</button>
   </div>
+</form> -->
+<form [formGroup]="CreateNoteDF" (ngSubmit) = "onSubmit()">
+  <label>Title:
+    <input type="text" formControlName="Title"/>
+  </label>
+  <label>Message:
+    <input type="text" formControlName="Message"/>
+  </label>
+  <div formArrayName="CheckList">
+    <h2>CheckList</h2><a (click) = "addCheckList()">AddCheckList</a>
+    <div *ngFor="let checklist of CheckList.controls; let i = index">
+      <div [formGroupName]="i">
+      <label>CheckList:
+        <input type="text" formControlName = "Checklist">
+      </label>
+      <label>IsChecked:
+        <input type="radio" class="form-control" value="true" formControlName="IsChecked" checked/>Yes
+        <input type="radio" class="form-control" value="false" formControlName="IsChecked" />No
+      </label>
+    </div>
+    </div>
+  </div>
+  <div formArrayName="Label">
+    <h2>CheckList</h2><a (click) = "addLabel()">AddCheckList</a>
+    <div *ngFor="let label of Label.controls; let i = index">
+      <div [formGroupName] = "i">
+      <label>Label:
+        <input type="text" formControlName = "label">
+      </label>
+    </div>
+    </div>
+  </div>
+  <label>IsPinned:
+    <input type="radio" class="form-control" value="true" formControlName="Pinned" checked/>Yes
+    <input type="radio" class="form-control" value="false" formControlName="Pinned" />No
+  </label>
+  <button type="submit">submit</button>
 </form>
+

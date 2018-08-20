@@ -36,7 +36,7 @@ export class NoteEditComponent implements OnInit {
   saveDetails(note : Note, Id : number){
     console.log(note);
     // console.log(Id);
-    this.noteservice.post(note, Id).subscribe(result => console.log(result.status));
+    this.noteservice.put(note, Id).subscribe(result => console.log(result.status));
     //this.location.back();
     this.router.navigate(['']);
   }
