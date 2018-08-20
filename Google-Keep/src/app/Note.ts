@@ -5,8 +5,10 @@ export class Note{
   Id : number;
   Title : string;
   Message : string;
-  IsPinned : boolean;
-  Label : Label[];
   CheckList : CheckList[];
+  Label : Label[];
+  Pinned : boolean;
+
+
 }
 

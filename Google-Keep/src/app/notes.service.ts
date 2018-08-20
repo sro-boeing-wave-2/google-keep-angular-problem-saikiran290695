@@ -1,23 +1,31 @@
 import { Injectable } from '@angular/core';
 import {Note} from './Note';
-import {Notes} from './Mock-NoteDB';
+//import {Notes} from './Mock-NoteDB';
 import {Observable, of} from 'rxjs';
-import {Http, Response} from '@angular/http';
+import {Http} from '@angular/http';
+import { promise } from 'protractor';
+import { get } from 'http';
+import { Body } from '@angular/http/src/body';
+//import {HttpClient, HttpResponse} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotesService {
-  public _Notes : Note[];
-  getNotes() : Observable<Note []>
+  _Notes : Note[];
+
+  getNotes()
   {
-    return  of (Notes);
+    return this.http.get("https://localhost:5001/api/Notes");
   }
-  getNoteById(Id) : Observable<Note>{
-    return of (Notes.find(Notes => Notes.Id == Id));
+  getNoteById(Id){
+     return this.http.get("https://localhost:5001/api/Notes?Id="+Id);
   }
-  post(note:Note):void{
-    Notes.push(note);
+  post(note:Note, Id : number){
+    return this.http.put("https://localhost:5001/api/Notes/"+Id, note);
+    //console.log("updated")
   }
-  constructor() { }
+  constructor(private http : Http) {
+
+  }
 }

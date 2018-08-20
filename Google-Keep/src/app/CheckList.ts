@@ -1,4 +1,5 @@
 export class CheckList{
-  CheckList  : string;
+  Id : number;
+  Checklist  : string;
   IsChecked : boolean;
 }

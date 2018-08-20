@@ -6,6 +6,8 @@ import { NotesDashboardComponent } from './notes-dashboard/notes-dashboard.compo
 import { NoteEditComponent } from './note-edit/note-edit.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { NoteCreateComponent } from './note-create/note-create.component';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpModule} from '@angular/http';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { NoteCreateComponent } from './note-create/note-create.component';
     NoteCreateComponent
   ],
   imports: [
+    HttpModule,
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule

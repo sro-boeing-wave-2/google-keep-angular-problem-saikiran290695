@@ -1,3 +1,4 @@
 export class Label{
-  Label :string;
+  Id : number;
+  label :string;
 }

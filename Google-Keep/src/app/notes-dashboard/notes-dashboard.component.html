@@ -1,20 +1,21 @@
+<a type="button" routerLink="/CreateNote">CreateNote</a>
 <div class="row">
   <div class="Note" *ngFor="let note of Notes">
-    <h2>{{note.Title}}</h2>
-    <h3>{{note.Message}}</h3>
+    <h2>{{note.title}}</h2>
+    <h3>{{note.message}}</h3>
     <label>Label</label>
     <ul>
-      <li *ngFor = "let label of note.Label">
-        {{label.Label}}
+      <li *ngFor = "let label of note.label">
+        {{label.label}}
       </li>
     </ul>
     <label>CheckList</label>
     <ul>
-      <li *ngFor = "let checklist of note.CheckList">
-        {{checklist.CheckList}}
+      <li *ngFor = "let checklist of note.checkList">
+        {{checklist.checklist}}
       </li>
     </ul>
-    <a type="button" routerLink="/Edit/{{note.Id}}">Edit</a>
+    <a type="button" routerLink="/Edit/{{note.id}}">Edit</a>
   </div>
 </div>
 <!-- <app-note-edit [note] = "SelectedNote"></app-note-edit> -->

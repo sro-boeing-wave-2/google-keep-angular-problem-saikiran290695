@@ -4,9 +4,25 @@
     <input type="text" class="form-control" formControlName="Title" required>
     <label>Message</label>
     <input type="text" class="form-control" formControlName="Message">
-    <label>IsPinned</label>
+
+
+    <div id="Note_Label">
+    <label>Label</label>
+    <input type="text" class="form-control" formControlName="Label">
+    </div>
+
+
+    <button type="button" (click) ="addmore()">Addmore</button>
+
+    <div class="Note_CheckList">
+    <label>CheckList</label>
+    <input type="text" class="form-control" formControlName="CheckList">
     <input type="radio" class="form-control" value="true" formControlName="IsChecked" checked/>Yes
     <input type="radio" class="form-control" value="false" formControlName="IsChecked" />No
+    </div>
+    <label>IsPinned</label>
+    <input type="radio" class="form-control" value="true" formControlName="IsPinned" checked/>Yes
+    <input type="radio" class="form-control" value="false" formControlName="IsPinned" />No
     <button type="submit" class="btn btn-primary">submit</button>
   </div>
 </form>
