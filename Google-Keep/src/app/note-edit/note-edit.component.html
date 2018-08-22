@@ -1,6 +1,6 @@
 <div *ngFor="let note of notes">
   <form [formGroup]="EditForm" (ngSubmit)="saveDetails(note.id)">
-    <input formControlName="Id" [(ngModel)] = "note.id" disabled/>
+    <input formControlName="Id" [(ngModel)] = "note.id" hidden/>
     <label>Title:
       <input formControlName="Title" [(ngModel)]="note.title" placeholder="Title" />
     </label>
@@ -18,26 +18,20 @@
           <label>CheckList:
             <input type="text" formControlName="Checklist" [(ngModel)]="note.checkList[i].checklist" />
           </label>
-          <label>IsChecked:
-            <input type="radio" class="form-control" value="true" formControlName="IsChecked"  checked/>Yes
-            <input type="radio" class="form-control" value="false" formControlName="IsChecked"/>No
-          </label>
+
           </div>
           <div *ngIf="note.checkList[i] == undefined">
               <label>CheckList:
                 <input type="text" formControlName="Checklist"/>
               </label>
-              <label>IsChecked:
-                <input type="radio" class="form-control" value="true" formControlName="IsChecked"  checked/>Yes
-                <input type="radio" class="form-control" value="false" formControlName="IsChecked"/>No
-              </label>
+
           </div>
         </div>
       </div>
     </div>
     <div formArrayName="Label">
-      <h2>CheckList</h2>
-      <a (click)="addLabel()">AddCheckList</a>
+      <h2>Label</h2>
+      <a (click)="addLabel()">AddLabel</a>
       <div *ngFor="let label of Label.controls; let i = index">
         <div [formGroupName]="i">
           <div *ngIf="note.label[i] !=null">
@@ -53,10 +47,6 @@
         </div>
       </div>
     </div>
-    <label>IsPinned:
-      <input type="radio" class="form-control" value="true" formControlName="Pinned" checked/>Yes
-      <input type="radio" class="form-control" value="false" formControlName="Pinned" />No
-    </label>
     <button type="submit">submit</button>
     <button type="button" (click)="goBack()">Back</button>
   </form>

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NotesService } from '../notes.service';
 import { FormBuilder, FormArray } from '@angular/forms';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-note-edit',
@@ -14,7 +14,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export class NoteEditComponent implements OnInit {
   TempNote: Note;
   notes: Note[];
-  id : number;
+  id: number;
   constructor(
     private noteservice: NotesService,
     private route: ActivatedRoute,
@@ -23,14 +23,14 @@ export class NoteEditComponent implements OnInit {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<NoteEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: number) {
-      console.log(data);
-      this.getNote();
-    }
+    console.log(data);
+    this.getNote();
+  }
   EditForm = this.fb.group({
-    Id : [''],
+    Id: [''],
     Title: [''],
     Message: [''],
-    Pinned: [''],
+    Pinned: ["false"],
     CheckList: this.fb.array([]),
     Label: this.fb.array([])
   });
@@ -48,7 +48,7 @@ export class NoteEditComponent implements OnInit {
   addCheckList() {
     this.CheckList.push(this.fb.group({
       Checklist: [''],
-      IsChecked: ['']
+      IsChecked: ["false"]
     }));
   }
   goBack(): void {
@@ -61,16 +61,15 @@ export class NoteEditComponent implements OnInit {
     const Id = this.data;
     this.noteservice.getNoteById(Id).subscribe(notes => {
       this.notes = notes.json();
-      console.log(notes.json());
       notes.json()[0].checkList.forEach(element => {
-       this.addCheckList();
+        this.addCheckList();
       });
       notes.json()[0].label.forEach(element => {
         this.addLabel();
-       });
+      });
     });
   }
-  saveDetails( Id: number) {
+  saveDetails(Id: number) {
     console.log(Id);
     console.log(this.EditForm.value as Note);
     this.noteservice.put(this.EditForm.value as Note, Id).subscribe(result => console.log(result.status));

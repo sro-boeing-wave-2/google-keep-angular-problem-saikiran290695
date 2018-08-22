@@ -21,7 +21,7 @@ export class NoteCreateComponent implements OnInit {
   CreateNoteDF = this.fb.group({
     Title : [''],
     Message : [''],
-    Pinned:[''],
+    Pinned:["false"],
     Label : this.fb.array([
       this.fb.group({
         label : ['']
@@ -30,7 +30,7 @@ export class NoteCreateComponent implements OnInit {
     CheckList : this.fb.array([
       this.fb.group({
         Checklist : [''],
-        IsChecked : ['']
+        IsChecked : ["false"]
       })
     ])
   });
