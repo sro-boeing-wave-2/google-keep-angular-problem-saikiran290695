@@ -1,19 +1,13 @@
 import { Injectable } from '@angular/core';
 import {Note} from './Note';
-//import {Notes} from './Mock-NoteDB';
-import {Observable, of} from 'rxjs';
 import {Http} from '@angular/http';
-import { promise } from 'protractor';
-import { get } from 'http';
-import { Body } from '@angular/http/src/body';
-//import {HttpClient, HttpResponse} from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotesService {
   _Notes : Note[];
-
   getNotes()
   {
     return this.http.get("https://localhost:5001/api/Notes");
@@ -32,7 +26,12 @@ export class NotesService {
   {
     return this.http.delete("https://localhost:5001/api/Notes?Id="+Id);
   }
-  constructor(private http : Http) {
-
-  }
+  constructor(private http : Http) {}
 }
+
+
+
+
+
+
+

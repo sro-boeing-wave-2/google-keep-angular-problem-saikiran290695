@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {NotesService} from '../notes.service';
-import {FormGroup, FormControl, FormBuilder, FormArray} from '@angular/forms';
+import {FormBuilder, FormArray} from '@angular/forms';
 import {Note} from '../Note';
-import { Label } from '../Label';
 import {Router} from '@angular/router';
+import {Location} from '@angular/common';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-note-create',
@@ -14,17 +15,9 @@ export class NoteCreateComponent implements OnInit {
   constructor(
     private noteservice : NotesService,
      private fb : FormBuilder,
-    private router : Router
-    ) { };
-
-  // CreateNote = new FormGroup({
-  //   Title : new FormControl(),
-  //   Message: new FormControl(),
-  //   IsPinned : new FormControl(),
-  //   IsChecked : new FormControl(),
-  //   Label : new FormControl(),
-  //   CheckList : new FormControl()
-  // });
+    private router : Router,
+    private location : Location,
+    public dialogRef: MatDialogRef<NoteCreateComponent>){}
   CreateNoteDF = this.fb.group({
     Title : [''],
     Message : [''],
@@ -58,17 +51,19 @@ export class NoteCreateComponent implements OnInit {
   }
   onSubmit():void{
     this.GenerateNote();
-    this.router.navigate(['']);
+    this.dialogRef.close();
+  }
+  goBack(){
+    this.dialogRef.close();
   }
   GenerateNote():void{
     console.log(this.CreateNoteDF.value);
-    this.noteservice.post(this.CreateNoteDF.value as Note).subscribe(result => console.log(result.statusText));
+    this.noteservice.post(this.CreateNoteDF.value as Note).subscribe(result => {
+      console.log(result.statusText)
+      this.router.navigate(['']);
+    });
   }
-  addmore():void
-  {
-    document.getElementById("Note_Label").innerHTML +=`<label>Label</label>
-    <input type="text" class="form-control" formControlName="Label">`;
-  }
+
   AddLabel():void{
 
   }

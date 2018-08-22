@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { Note } from '../Note';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NotesService } from '../notes.service';
 import { FormBuilder, FormArray } from '@angular/forms';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-note-edit',
@@ -13,14 +14,18 @@ import { FormBuilder, FormArray } from '@angular/forms';
 export class NoteEditComponent implements OnInit {
   TempNote: Note;
   notes: Note[];
+  id : number;
   constructor(
     private noteservice: NotesService,
     private route: ActivatedRoute,
     private location: Location,
     private router: Router,
-    private fb: FormBuilder
-
-  ) { };
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<NoteEditComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: number) {
+      console.log(data);
+      this.getNote();
+    }
   EditForm = this.fb.group({
     Id : [''],
     Title: [''],
@@ -47,13 +52,13 @@ export class NoteEditComponent implements OnInit {
     }));
   }
   goBack(): void {
-    this.location.back();
+    this.dialogRef.close();
   }
   ngOnInit() {
-    this.getNote();
+
   }
   getNote(): void {
-    const Id = +this.route.snapshot.paramMap.get("id");
+    const Id = this.data;
     this.noteservice.getNoteById(Id).subscribe(notes => {
       this.notes = notes.json();
       console.log(notes.json());
@@ -65,11 +70,11 @@ export class NoteEditComponent implements OnInit {
        });
     });
   }
-
   saveDetails( Id: number) {
     console.log(Id);
     console.log(this.EditForm.value as Note);
     this.noteservice.put(this.EditForm.value as Note, Id).subscribe(result => console.log(result.status));
-    this.router.navigate(['']);
+    this.dialogRef.close();
   }
+
 }

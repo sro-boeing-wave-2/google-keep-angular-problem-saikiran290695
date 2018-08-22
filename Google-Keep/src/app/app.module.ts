@@ -8,6 +8,8 @@ import { AppRoutingModule } from './/app-routing.module';
 import { NoteCreateComponent } from './note-create/note-create.component';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule,MatCardModule,MatDialogModule} from '@angular/material';
 
 
 @NgModule({
@@ -19,8 +21,13 @@ import {HttpModule} from '@angular/http';
   ],
   imports: [
     HttpModule,
+    MatCardModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatCheckboxModule,
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule

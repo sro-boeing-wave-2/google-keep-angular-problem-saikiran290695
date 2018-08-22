@@ -5,7 +5,7 @@ import {NoteEditComponent} from './note-edit/note-edit.component';
 import {NoteCreateComponent} from './note-create/note-create.component';
 
 const route : Routes = [
-  {path:'' , redirectTo: 'Dashboard', pathMatch:'full'},
+  {path:'' , redirectTo: '/Dashboard', pathMatch:'full'},
   {path:'Dashboard', component: NotesDashboardComponent},
   {path:'Edit/:id',component:NoteEditComponent},
   {path:'CreateNote',component:NoteCreateComponent}

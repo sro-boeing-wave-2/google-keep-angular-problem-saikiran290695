@@ -1,22 +1,55 @@
-<a type="button" routerLink="/CreateNote">CreateNote</a>
+<!-- <a type="button" routerLink="/CreateNote">CreateNote</a>
 <div class="row">
   <div class="Note" *ngFor="let note of Notes">
     <h2>{{note.title}}</h2>
     <h3>{{note.message}}</h3>
     <label>Label</label>
     <ul>
-      <li *ngFor = "let label of note.label">
+      <li *ngFor="let label of note.label">
         {{label.label}}
       </li>
     </ul>
     <label>CheckList</label>
     <ul>
-      <li *ngFor = "let checklist of note.checkList">
+      <li *ngFor="let checklist of note.checkList">
         {{checklist.checklist}}
       </li>
     </ul>
     <a type="button" routerLink="/Edit/{{note.id}}">Edit</a>
     <button type="button" (click)="delete(note.id)">Delete</button>
   </div>
+</div> -->
+<a type="button" (click)="dialogClick()">CreateNote</a>
+<div *ngFor="let note of Notes">
+  <mat-card class="example-card" style="float:left">
+    <mat-card-header>
+      <mat-card-title>
+        <b>Id</b>:{{note.id}}
+        <br>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <b>Title</b>:{{note.title}}
+        <br>
+        <b>Text</b>:{{note.message}}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngFor="let c of note.checkList">
+        <b> CheckList</b>:{{c.checklist}}
+        <br>
+      </div>
+      <br>
+      <div *ngFor="let d of note.label">
+        <b> LabelText</b>:{{d.label}}
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" (click) = "Popedit(note.id)">Edit</button>
+      <!-- <button mat-raised-button color="accent" routerLink="/Edit/{{note.id}}">Edit</button> -->
+      <button mat-raised-button color="accent" (click)="delete(note.id)">Delete</button>
+    <!-- <button mat-raised-button color="accent" (click)="dialogClick()">sample</button> -->
+    </mat-card-actions>
+  </mat-card>
+ <!-- <div style="height:57px;width:40px; background-color: red;"></div> -->
 </div>
 <!-- <app-note-edit [note] = "SelectedNote"></app-note-edit> -->
