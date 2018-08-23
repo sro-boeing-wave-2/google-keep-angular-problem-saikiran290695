@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-.my-centered-dialog {
-  max-width: 80vw;}
-  .my-centered-dialog  .mat-dialog-container {
-    max-width: none;
-  }
+.nav ul li{
+display : inline;
+}
+.nav ul{
+  margin: 0px 0px 10px 0px  ;
+  padding:10px;
+}
+.nav{
+  background-color: rgb(129, 129, 129);
+  margin:0px;
 
+}
