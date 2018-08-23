@@ -47,7 +47,7 @@ export class NoteCreateComponent implements OnInit {
   }
   addCheckList(){
     this.CheckList.push(this.fb.group({Checklist : [''],
-    IsChecked : ['']}));
+    IsChecked : ["false"]}));
   }
   onSubmit():void{
     this.GenerateNote();
@@ -63,7 +63,6 @@ export class NoteCreateComponent implements OnInit {
       this.router.navigate(['']);
     });
   }
-
   AddLabel():void{
 
   }

@@ -1,42 +1,58 @@
-<div class="CreateNote">
-    <div class="icon">
-      <div class="link">
-      <a type="button" (click)="AddNote()" id="createNote"><p>CreateNote</p></a>
-    </div>
-    </div>
+<div class="icon">
+  <div class="link">
+    <a type="button" (click)="AddNote()" id="createNote">
+      <h1>CreateNote</h1>
+      <h1>O_-</h1>
+    </a>
+  </div>
 </div>
 <div id="NoteContainer" *ngFor="let note of Notes">
-  <mat-card class="example-card" style="float:left">
+  <mat-card class="example-card">
     <mat-card-header>
       <mat-card-title>
+        <div class="title">
+          <div class="icons">
+            <span id="k">
+              <i id="pinned" (click)="pinnedToggle(note)" [class.pinned]="!note.pinned" [style.color]="note.pinned ? 'black': 'brown'"
+                class="fas fa-thumbtack"></i>
 
-        <div id="pinned" (click)="pinnedToggle(note)" [class.pinned]="note.pinned" [style.color]="note.pinned ? 'black': 'brown'">
-          <i class="fas fa-thumbtack"></i>
-        </div>
-        <div id="delete" (click)="delete(note.id)">
-          <i class="fas fa-trash"></i>
-        </div>
-        <div id="delete" (click)="EditNote(note.id)">
-          <i class="fas fa-pen-nib"></i>
+              <i id="delete" (click)="delete(note.id)" class="fas fa-trash"></i>
+
+              <i id="delete" (click)="EditNote(note.id)" class="fas fa-pen-nib"></i>
+            </span>
+
+          </div>
+          <div class="title_value">
+            <h1>{{note.title}}</h1>
+          </div>
+          <hr/>
         </div>
         <br>
       </mat-card-title>
       <mat-card-subtitle>
-        <b>Title</b>:{{note.title}}
         <br>
-        <b>Text</b>:{{note.message}}
+        <h2>{{note.message}}</h2>
+        <hr/>
       </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <div *ngFor="let c of note.checkList; let i=index">
+      <b>ToDo's</b>
+      <div *ngFor="let c of note.checkList; let i=index" class="checklist">
         <div (click)="IsChecked(i,note)" [class.IsChecked]="c.isChecked">
-        <b> CheckList</b>:{{c.checklist}}
+          {{c.checklist}}
         </div>
-        <br>
       </div>
-      <br>
-      <div *ngFor="let d of note.label">
-        <b> LabelText</b>:{{d.label}}
+      <br/>
+      <hr/>
+      <b>LabelText</b>
+      <br/>
+      <br/>
+      <div class="inline">
+        <ul id="list">
+          <li *ngFor="let d of note.label">
+            {{d.label}}
+          </li>
+        </ul>
       </div>
     </mat-card-content>
     <mat-card-actions>

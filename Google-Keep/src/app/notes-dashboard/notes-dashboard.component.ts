@@ -28,7 +28,8 @@ export class NotesDashboardComponent implements OnInit {
       this.getNotes())
   }
   AddNote(note: number) {
-    let dialog = this.dialog.open(NoteCreateComponent);
+    let dialog = this.dialog.open(NoteCreateComponent, { width:'600px',panelClass: 'my-centered-dialog' });
+
     dialog.afterClosed().subscribe(() => this.getNotes());
   }
   EditNote(note: Note) {
